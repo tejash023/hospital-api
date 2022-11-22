@@ -2,7 +2,8 @@ const express = require('express');
 const port = process.env.PORT || '8080';
 const app = express();
 const db = require('./config/mongoose');
-
+const passport = require('passport');
+const passportJWT = require('./config/passport-jwt');
 
 //loading the router
 app.get('/', require('./routes/index'));
