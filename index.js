@@ -6,7 +6,7 @@ const passport = require('passport');
 const passportJWT = require('./config/passport-jwt');
 
 //loading the router
-app.get('/', require('./routes/index'));
+app.use('/', require('./routes/index'));
 
 //starting the server
 app.listen(port, function(err){

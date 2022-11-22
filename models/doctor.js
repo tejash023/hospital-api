@@ -3,12 +3,12 @@ const { MongoMissingCredentialsError } = require('mongodb');
 const mongoose = require('mongoose');
 
 const doctorSchema = mongoose.Schema({
-  name:{
+  email:{
     type: String,
     required: true
   },
-  phone:{
-    type: Number,
+  name:{
+    type: String,
     required: true,
   },
   password:{
