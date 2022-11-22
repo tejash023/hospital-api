@@ -6,7 +6,7 @@ const ExtractJWT = require('passport-jwt').ExtractJwt;
 const Doctor = require('../models/doctor');
 
 let opts = {
-  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken,
+  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
   secretOrKey: 'd34nfdhowi3423f3245fds'
 }
 
