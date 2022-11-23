@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const reportSchema = mongoose.Schema({
   doctor:{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'doctor'
+    ref: 'Doctor'
   },
   patient:{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'patient'
+    ref: 'Patient'
   },
   status:{
     type: String,

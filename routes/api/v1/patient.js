@@ -9,4 +9,7 @@ router.post('/register', passport.authenticate('jwt', {session: false}) ,patient
 //create patient report
 router.post('/:id/create_report', passport.authenticate('jwt', {session: false}), patientController.createReport);
 
+//get all reports
+router.get('/:id/all_reports', passport.authenticate('jwt', {session: false}), patientController.allReports);
+
 module.exports = router;

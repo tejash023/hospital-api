@@ -82,12 +82,22 @@ module.exports.allReports = async (req, res) => {
   try{
     let patient = await Patient.findById(req.params.id).populate({
       path:'reports',
-      populate: {path: 'doctor', select: 'name_id'},
+      populate: {path: 'doctor', select: 'name _id'},
     });
 
-    console.log(patient);
+    if(patient){
+      return res.status(200).json({
+        message:`${patient.name} reports`,
+        reports: patient.reports
+      })
+    }else{
+      return res.status(422).json({
+        message:'Patient not registered'
+      })
+    }
 
   }catch(err){
+    console.log(err);
     return res.json(500,{
       message: 'Internal Server Error'
     })
