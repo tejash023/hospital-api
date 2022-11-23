@@ -1,5 +1,7 @@
 const Report = require('../models/report');
 
+//generate report bases on status
+//status: Postive Negative Quarantine Travelled
 module.exports.status = async (req, res) =>{
 
   try{
@@ -13,6 +15,7 @@ module.exports.status = async (req, res) =>{
       select: 'name _id'
     });
 
+    console.log(report);
     if(report && report.length !== 0){
       return res.status(200).json({
         message:`List of all the reports with ${req.params.status}`,

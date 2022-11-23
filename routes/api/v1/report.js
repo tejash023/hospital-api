@@ -3,6 +3,6 @@ const router = express.Router();
 
 const reportController = require('../../../controllers/report_controller');
 
-router.get('/:status')
+router.get('/:status', reportController.status);
 
 module.exports = router;
