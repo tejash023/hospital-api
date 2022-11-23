@@ -30,14 +30,12 @@ module.exports.register = async (req, res) => {
       message: 'Internal Server Error'
     })
   }
-
-  
 }
 
 
 //creating report
 module.exports.createReport = async (req,res) =>{
-  console.log(req.params.id);
+  
   try{
     //check if patient is available
     let patient = await Patient.findById(req.params.id);
@@ -74,9 +72,24 @@ module.exports.createReport = async (req,res) =>{
       message: 'Internal server Error'
     });
   }
-  
-
 }
 
 
+
 //generating all the reports of the user
+module.exports.allReports = async (req, res) => {
+
+  try{
+    let patient = await Patient.findById(req.params.id).populate({
+      path:'reports',
+      populate: {path: 'doctor', select: 'name_id'},
+    });
+
+    console.log(patient);
+
+  }catch(err){
+    return res.json(500,{
+      message: 'Internal Server Error'
+    })
+  }
+}
