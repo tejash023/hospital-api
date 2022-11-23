@@ -1,6 +1,10 @@
 //import patient model
 const Patient = require('../models/patient');
+const Report = require('../models/report');
+const Doctor = require('../models/doctor');
 
+
+//registering patients
 module.exports.register = async (req, res) => {
 
   try{
@@ -29,3 +33,50 @@ module.exports.register = async (req, res) => {
 
   
 }
+
+
+//creating report
+module.exports.createReport = async (req,res) =>{
+  console.log(req.params.id);
+  try{
+    //check if patient is available
+    let patient = await Patient.findById(req.params.id);
+    //console.log(patient);
+    if(patient){
+      let doctor = await Doctor.findById(req.body.doctor);
+
+      //create a report for patient
+      let reportData = {
+        doctor: req.body.doctor,
+        patient: req.params.id,
+        status: req.body.status,
+        date: req.body.date
+      };
+
+      let report = await Report.create(reportData);
+      patient.reports.push(report);
+      patient.save();
+
+      return res.json(200,{
+        message: 'Patient report created successfully'
+      });
+
+    }else{
+      //console.log(err);
+      return res.json(422,{
+        message: 'Patient registration unsuccessfull'
+      })
+    }
+
+  }catch(err){
+    console.log(err);
+    return res.json(500,{
+      message: 'Internal server Error'
+    });
+  }
+  
+
+}
+
+
+//generating all the reports of the user
