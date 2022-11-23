@@ -1,9 +1,6 @@
 const express = require('express');
-
 const router = express.Router();
 
-console.log('Router Loaded');
-
-router.use('/api', require('./api'));
+router.use('/doctor', require('./doctor'));
 
 module.exports = router;

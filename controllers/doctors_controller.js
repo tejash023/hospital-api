@@ -1,10 +1,9 @@
-const JwtStrategy = require('passport-jwt/lib/strategy');
 const jwt = require('jsonwebtoken');
 const Doctor = require('../models/doctor');
 
 module.exports.createDoctor = async (req, res) => {
 
-  console.log(req.body);
+  //console.log(req.body);
 
   try{
       if(req.body.password != req.body.confirm_password){
@@ -13,7 +12,7 @@ module.exports.createDoctor = async (req, res) => {
         });
       }
       //find the doctor using the email first before signing up - if email already exists
-      let doctor = await Doctor.findOne({email:req.body.email});
+      let doctor = await Doctor.findOne({phone:req.body.phone});
 
       //if user doesn't exist - create the user and redirect to login page
       if(!doctor){
@@ -44,10 +43,11 @@ module.exports.createDoctor = async (req, res) => {
 module.exports.createSession = async (req, res) => {
 
   try{
-    
-    let doctor = Doctor.findOne({email: req.body.email});
+    console.log(req.body.phone);
+    let doctor = await Doctor.findOne({phone: req.body.phone});
 
-    if(!doctor || doctor.password != req.body.password){
+    console.log('doctor', doctor)
+    if(!doctor || doctor.password !== req.body.password){
       return res.json(422,{
         message: 'Invalid username or password'
       });
@@ -57,7 +57,7 @@ module.exports.createSession = async (req, res) => {
     return res.json(200, {
       message: 'Sign in successfull',
       data:{
-        token: JwtStrategy.toString(user.toJSON(), '', {expiresIN: '100000'})
+        token: jwt.sign(doctor.toJSON(), 'd34nfdhowi3423f3245fds', {expiresIn: '100000',})
       }
     });
 
