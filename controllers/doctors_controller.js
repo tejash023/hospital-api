@@ -11,7 +11,7 @@ module.exports.createDoctor = async (req, res) => {
           message: 'Passwords do not match'
         });
       }
-      //find the doctor using the email first before signing up - if email already exists
+      //find the doctor using the phone first before signing up - if email already exists
       let doctor = await Doctor.findOne({phone:req.body.phone});
 
       //if doctor doesn't exist - create the user 
@@ -48,7 +48,7 @@ module.exports.createSession = async (req, res) => {
 
     //if do not exists or exists and password do not match
     if(!doctor || doctor.password !== req.body.password){
-      return res.json(422,{
+      return res.status(422).json({
         message: 'Invalid username or password'
       });
     }
@@ -59,7 +59,7 @@ module.exports.createSession = async (req, res) => {
       doctorID:  doctor._id,
       Name: doctor.name,
       data:{
-        token: jwt.sign(doctor.toJSON(), 'd34nfdhowi3423f3245fds', {expiresIn: '500000',})
+        token: jwt.sign(doctor.toJSON(), process.env.SECRET_KEY , {expiresIn: '500000',})
       }
     });
 
