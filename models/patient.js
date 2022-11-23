@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//patient schema
 const patientSchema = new mongoose.Schema({
 
   name:{
@@ -8,7 +9,8 @@ const patientSchema = new mongoose.Schema({
   },
   phone: {
     type: Number,
-    required: true
+    required: true,
+    
   },
   city: {
     type: String,

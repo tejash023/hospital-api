@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//report schema
 const reportSchema = new mongoose.Schema({
   patient:{
     type: mongoose.Schema.Types.ObjectId,

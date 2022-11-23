@@ -1,28 +1,28 @@
 const jwt = require('jsonwebtoken');
 const Doctor = require('../models/doctor');
 
+//to register the doctor
 module.exports.createDoctor = async (req, res) => {
 
-  //console.log(req.body);
-
   try{
+      //check if password and confirm password matches
       if(req.body.password != req.body.confirm_password){
-        return res.json(200,{
+        return res.status(200).json({
           message: 'Passwords do not match'
         });
       }
       //find the doctor using the email first before signing up - if email already exists
       let doctor = await Doctor.findOne({phone:req.body.phone});
 
-      //if user doesn't exist - create the user and redirect to login page
+      //if doctor doesn't exist - create the user 
       if(!doctor){
         await Doctor.create(req.body);
-        return res.json(200,{
+        return res.status(200).json({
           message: 'Doctor registered successfully'
         })
       }else{
         //if user/email exists - redirect back
-        return res.json(200,{
+        return res.status(422).json({
           message: 'Doctor already exists'
         });
       }
@@ -30,7 +30,7 @@ module.exports.createDoctor = async (req, res) => {
 
   }catch(err){
     console.log(err);
-    return res.json(500, {
+    return res.status(500).json({
       message: "Internal Server Error"
     });
   }
@@ -39,22 +39,22 @@ module.exports.createDoctor = async (req, res) => {
 }
 
 
-
+//logging in a doctor
 module.exports.createSession = async (req, res) => {
 
   try{
-    //console.log(req.body.phone);
+    //find the doctor if he/she exists using phone no
     let doctor = await Doctor.findOne({phone: req.body.phone});
 
-    //console.log('doctor', doctor)
+    //if do not exists or exists and password do not match
     if(!doctor || doctor.password !== req.body.password){
       return res.json(422,{
         message: 'Invalid username or password'
       });
     }
 
-
-    return res.json(200, {
+    //if doctor exists and passwords match - login and generate jwt token
+    return res.status(200).json({
       message: 'Sign in successfull',
       doctorID:  doctor._id,
       Name: doctor.name,
@@ -65,15 +65,9 @@ module.exports.createSession = async (req, res) => {
 
   }catch(err){
     console.log(err);
-    return res.json(500, {
+    return res.status(500).json({
       message: "Internal Server Error"
     })
   }
 
-}
-
-module.exports.hello = (req, res) => {
-  return res.json(200,{
-    message: 'Hello'
-  })
 }

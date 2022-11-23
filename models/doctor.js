@@ -2,6 +2,7 @@
 const { MongoMissingCredentialsError } = require('mongodb');
 const mongoose = require('mongoose');
 
+//doctor schema
 const doctorSchema = new mongoose.Schema({
   name:{
     type: String,
