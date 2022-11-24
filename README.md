@@ -3,14 +3,11 @@ A Server-side API built on NodeJS and MongoDB for hospital doctors to keep track
 
 [Live](https://hospital-api-covid19.herokuapp.com/)
 
+[Documentation](https://hospital-api-covid19.herokuapp.com/api-docs/#/)
+
 Routes:
-* POST - /api/v1/doctor/register
-* POST - /api/v1/doctor/login
-* GET  - /api/v1/patient/
-* POST - /api/v1/patient/register
-* POST - /api/v1/patient/:id/create_report/
-* POST - /api/v1/patient/:id/all_reports
-* GET - /api/v1/report/:status
+
+![image](https://user-images.githubusercontent.com/36923392/203755210-29977aec-c237-42db-9ccb-666dea200375.png)
 
 
 Screenshots:
