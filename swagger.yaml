@@ -1,6 +1,11 @@
 openapi: 3.0.0
 info:
   title: Hospital API
+  description: |-
+    A Server-side API built on NodeJS and MongoDB for hospital doctors to keep track of their patients with Covid19 test reports.
+
+    [Github](https://github.com/tejash023/hospital-api) 
+
   contact: {}
   version: '1.0'
 servers:
