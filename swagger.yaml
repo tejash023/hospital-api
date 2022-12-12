@@ -9,7 +9,7 @@ info:
   contact: {}
   version: '1.0'
 servers:
-- url: https://hospital-api-covid19.herokuapp.com/api/v1
+- url: https://hospital-api-production.up.railway.app/api/v1
   variables: {}
 paths:
   /doctor/register:
