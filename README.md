@@ -1,9 +1,9 @@
-# Hospital API
+# Hospital Backend API
 A Server-side API built on NodeJS and MongoDB for hospital doctors to keep track of their patients with Covid19 test reports.
 
-[Live](https://hospital-api-covid19.herokuapp.com/)
+[Live](https://hospital-api-production.up.railway.app/)
 
-[Documentation](https://hospital-api-covid19.herokuapp.com/api-docs/#/)
+[Documentation](https://hospital-api-production.up.railway.app/api-docs/#/)
 
 Routes:
 
