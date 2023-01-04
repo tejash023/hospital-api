@@ -7,7 +7,7 @@ info:
     [Github](https://github.com/tejash023/hospital-api) 
 
   contact: {}
-  version: '1.0'
+  version: '2.0'
 servers:
 - url: https://enchanting-cuff-dog.cyclic.app/api/v1
   variables: {}
